@@ -1,0 +1,255 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_infinii_vision_1_1_visa_com_instrument" kind="class" language="C#" prot="public">
+    <compoundname>InfiniiVision::VisaComInstrument</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_infinii_vision_1_1_visa_com_instrument_1a7d89305348283c43226b8d027dda5007" prot="private" static="no" mutable="no">
+        <type>ResourceManagerClass</type>
+        <definition>ResourceManagerClass InfiniiVision.VisaComInstrument.m_ResourceManager</definition>
+        <argsstring></argsstring>
+        <name>m_ResourceManager</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="253" column="1" bodyfile="Program.cs" bodystart="253" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_infinii_vision_1_1_visa_com_instrument_1a46c8f5eddb85edf5ff304dcf7eb43fde" prot="private" static="no" mutable="no">
+        <type>FormattedIO488Class</type>
+        <definition>FormattedIO488Class InfiniiVision.VisaComInstrument.m_IoObject</definition>
+        <argsstring></argsstring>
+        <name>m_IoObject</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="254" column="1" bodyfile="Program.cs" bodystart="254" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_infinii_vision_1_1_visa_com_instrument_1afc150baec5e2d016fa962baff26d2adc" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string InfiniiVision.VisaComInstrument.m_strVisaAddress</definition>
+        <argsstring></argsstring>
+        <name>m_strVisaAddress</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="255" column="1" bodyfile="Program.cs" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1abaa4c28d3482fc9e564d4bada3edcec1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>InfiniiVision.VisaComInstrument.VisaComInstrument</definition>
+        <argsstring>(string strVisaAddress)</argsstring>
+        <name>VisaComInstrument</name>
+        <param>
+          <type>string</type>
+          <declname>strVisaAddress</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="257" column="1" bodyfile="Program.cs" bodystart="257" bodyend="265"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1ac7fc5a6c6866cd7a8b40f0a961fe845d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InfiniiVision.VisaComInstrument.DoCommand</definition>
+        <argsstring>(string strCommand)</argsstring>
+        <name>DoCommand</name>
+        <param>
+          <type>string</type>
+          <declname>strCommand</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="266" column="1" bodyfile="Program.cs" bodystart="266" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1ab1f7c114998a45e13c8a9e9f464fa111" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InfiniiVision.VisaComInstrument.DoCommandIEEEBlock</definition>
+        <argsstring>(string strCommand, byte[] DataArray)</argsstring>
+        <name>DoCommandIEEEBlock</name>
+        <param>
+          <type>string</type>
+          <declname>strCommand</declname>
+        </param>
+        <param>
+          <type>byte []</type>
+          <declname>DataArray</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="273" column="1" bodyfile="Program.cs" bodystart="273" bodyend="280"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1ae67dd2583965d686d9368af3454d59d0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string InfiniiVision.VisaComInstrument.DoQueryString</definition>
+        <argsstring>(string strQuery)</argsstring>
+        <name>DoQueryString</name>
+        <param>
+          <type>string</type>
+          <declname>strQuery</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="281" column="1" bodyfile="Program.cs" bodystart="281" bodyend="292"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1a2231d5232b8caeb594c948e94282f9d6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double InfiniiVision.VisaComInstrument.DoQueryNumber</definition>
+        <argsstring>(string strQuery)</argsstring>
+        <name>DoQueryNumber</name>
+        <param>
+          <type>string</type>
+          <declname>strQuery</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="293" column="1" bodyfile="Program.cs" bodystart="293" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1ac727147dad47a5130d29387a21493ece" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double []</type>
+        <definition>double [] InfiniiVision.VisaComInstrument.DoQueryNumbers</definition>
+        <argsstring>(string strQuery)</argsstring>
+        <name>DoQueryNumbers</name>
+        <param>
+          <type>string</type>
+          <declname>strQuery</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="306" column="1" bodyfile="Program.cs" bodystart="306" bodyend="318"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1a45b052793ee59a2af8ef9fb2b768cb1f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>byte []</type>
+        <definition>byte [] InfiniiVision.VisaComInstrument.DoQueryIEEEBlock</definition>
+        <argsstring>(string strQuery)</argsstring>
+        <name>DoQueryIEEEBlock</name>
+        <param>
+          <type>string</type>
+          <declname>strQuery</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="319" column="1" bodyfile="Program.cs" bodystart="319" bodyend="332"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1af22940c761bc09deb12024121f0bf991" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InfiniiVision.VisaComInstrument.SetTimeoutSeconds</definition>
+        <argsstring>(int nSeconds)</argsstring>
+        <name>SetTimeoutSeconds</name>
+        <param>
+          <type>int</type>
+          <declname>nSeconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="370" column="1" bodyfile="Program.cs" bodystart="370" bodyend="373"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1ab2e68f3c0a9d940757111e5cd31ff0d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InfiniiVision.VisaComInstrument.Close</definition>
+        <argsstring>()</argsstring>
+        <name>Close</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="375" column="1" bodyfile="Program.cs" bodystart="375" bodyend="392"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1a7a9fae7cadfc5552491b623b5ee2470f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InfiniiVision.VisaComInstrument.CheckInstrumentErrors</definition>
+        <argsstring>(string strCommand)</argsstring>
+        <name>CheckInstrumentErrors</name>
+        <param>
+          <type>string</type>
+          <declname>strCommand</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="333" column="1" bodyfile="Program.cs" bodystart="333" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_1a2b7bbc7c741faeec42787a0c2c3ceaef" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void InfiniiVision.VisaComInstrument.OpenIo</definition>
+        <argsstring>()</argsstring>
+        <name>OpenIo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="354" column="1" bodyfile="Program.cs" bodystart="354" bodyend="369"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Program.cs" line="252" column="1" bodyfile="Program.cs" bodystart="251" bodyend="393"/>
+    <listofallmembers>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1a7a9fae7cadfc5552491b623b5ee2470f" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>CheckInstrumentErrors</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1ab2e68f3c0a9d940757111e5cd31ff0d9" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>Close</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1ac7fc5a6c6866cd7a8b40f0a961fe845d" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>DoCommand</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1ab1f7c114998a45e13c8a9e9f464fa111" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>DoCommandIEEEBlock</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1a45b052793ee59a2af8ef9fb2b768cb1f" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>DoQueryIEEEBlock</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1a2231d5232b8caeb594c948e94282f9d6" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>DoQueryNumber</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1ac727147dad47a5130d29387a21493ece" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>DoQueryNumbers</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1ae67dd2583965d686d9368af3454d59d0" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>DoQueryString</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1a46c8f5eddb85edf5ff304dcf7eb43fde" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>m_IoObject</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1a7d89305348283c43226b8d027dda5007" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>m_ResourceManager</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1afc150baec5e2d016fa962baff26d2adc" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>m_strVisaAddress</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1a2b7bbc7c741faeec42787a0c2c3ceaef" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>OpenIo</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1af22940c761bc09deb12024121f0bf991" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>SetTimeoutSeconds</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_1abaa4c28d3482fc9e564d4bada3edcec1" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrument</scope><name>VisaComInstrument</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

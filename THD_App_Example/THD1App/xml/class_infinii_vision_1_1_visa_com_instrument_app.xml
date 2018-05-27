@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="class_infinii_vision_1_1_visa_com_instrument_app" kind="class" language="C#" prot="public">
+    <compoundname>InfiniiVision::VisaComInstrumentApp</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_infinii_vision_1_1_visa_com_instrument_app_1a5ba6265becc492d31b8f52867b1ee261" prot="private" static="yes" mutable="no">
+        <type><ref refid="class_infinii_vision_1_1_visa_com_instrument" kindref="compound">VisaComInstrument</ref></type>
+        <definition>VisaComInstrument InfiniiVision.VisaComInstrumentApp.myScope</definition>
+        <argsstring></argsstring>
+        <name>myScope</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="14" column="1" bodyfile="Program.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_app_1a396aaef1e0ccd45bae26c37a4c13f7c9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void InfiniiVision.VisaComInstrumentApp.Main</definition>
+        <argsstring>(string[] args)</argsstring>
+        <name>Main</name>
+        <param>
+          <type>string []</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="15" column="1" bodyfile="Program.cs" bodystart="15" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_app_1a167db9c5c99b25906f6ac3a37211ebe2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void InfiniiVision.VisaComInstrumentApp.Initialize</definition>
+        <argsstring>()</argsstring>
+        <name>Initialize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="52" column="1" bodyfile="Program.cs" bodystart="52" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_app_1ad51892ff33a28593f93bacf39db60b8f" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void InfiniiVision.VisaComInstrumentApp.Capture</definition>
+        <argsstring>()</argsstring>
+        <name>Capture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="66" column="1" bodyfile="Program.cs" bodystart="66" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="class_infinii_vision_1_1_visa_com_instrument_app_1a413b4cf2d9e8fce8f12b4f3aa75f834f" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void InfiniiVision.VisaComInstrumentApp.Analyze</definition>
+        <argsstring>()</argsstring>
+        <name>Analyze</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="Program.cs" line="133" column="1" bodyfile="Program.cs" bodystart="133" bodyend="249"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="Program.cs" line="13" column="1" bodyfile="Program.cs" bodystart="12" bodyend="250"/>
+    <listofallmembers>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_app_1a413b4cf2d9e8fce8f12b4f3aa75f834f" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrumentApp</scope><name>Analyze</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_app_1ad51892ff33a28593f93bacf39db60b8f" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrumentApp</scope><name>Capture</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_app_1a167db9c5c99b25906f6ac3a37211ebe2" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrumentApp</scope><name>Initialize</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_app_1a396aaef1e0ccd45bae26c37a4c13f7c9" prot="public" virt="non-virtual"><scope>InfiniiVision::VisaComInstrumentApp</scope><name>Main</name></member>
+      <member refid="class_infinii_vision_1_1_visa_com_instrument_app_1a5ba6265becc492d31b8f52867b1ee261" prot="private" virt="non-virtual"><scope>InfiniiVision::VisaComInstrumentApp</scope><name>myScope</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
