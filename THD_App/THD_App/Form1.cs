@@ -1,0 +1,469 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+using Ivi.Visa.Interop;
+using System.Runtime.InteropServices;
+
+namespace THD_App
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+
+            //Tirando a legenda do gráfico e selecionando o tipo de gráfico
+            chtGraf1.Legends.Clear();
+            chtGraf1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineRange;
+            chtGraf2.Legends.Clear();
+            chtGraf2.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chtGraf2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Stock;
+            chtGraf3.Legends.Clear();
+            chtGraf3.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineRange;
+
+            timer1.Enabled = false;
+        }
+
+        int x = 0;
+        double thd_r, thd_f;
+
+        private static VisaComInstrument myScope;
+
+        /*
+        * Initialize the oscilloscope to a known state.
+        * --------------------------------------------------------------
+        */
+        private static void Initialize()
+        {
+            string strResults;
+            // Get and display the device's *IDN? string.
+            strResults = myScope.DoQueryString("*IDN?");
+
+            MessageBox.Show("*IDN? result is: {0}", strResults);
+            //Console.WriteLine("*IDN? result is: {0}", strResults);
+            // Clear status and load the default setup.
+            myScope.DoCommand("*CLS");
+            myScope.DoCommand("*RST");
+        }
+        /*
+        * Capture the waveform.
+        * --------------------------------------------------------------
+        */
+        private static void Capture()
+        {
+            // Use auto-scale to automatically configure oscilloscope.
+            myScope.DoCommand(":AUToscale");
+            // Set trigger mode (EDGE, PULSe, PATTern, etc., and input source.
+            myScope.DoCommand(":TRIGger:MODE EDGE");
+            Console.WriteLine("Trigger mode: {0}",
+            myScope.DoQueryString(":TRIGger:MODE?"));
+            // Set EDGE trigger parameters.
+            myScope.DoCommand(":TRIGger:EDGE:SOURCe CHANnel1");
+            Console.WriteLine("Trigger edge source: {0}",
+            myScope.DoQueryString(":TRIGger:EDGE:SOURce?"));
+            myScope.DoCommand(":TRIGger:EDGE:LEVel 1.5");
+            Console.WriteLine("Trigger edge level: {0}",
+            myScope.DoQueryString(":TRIGger:EDGE:LEVel?"));
+            myScope.DoCommand(":TRIGger:EDGE:SLOPe POSitive");
+            Console.WriteLine("Trigger edge slope: {0}",
+            myScope.DoQueryString(":TRIGger:EDGE:SLOPe?"));
+            // Save oscilloscope configuration.
+            byte[] ResultsArray; // Results array.
+            int nLength; // Number of bytes returned from instrument.
+            string strPath;
+            // Query and read setup string.
+            ResultsArray = myScope.DoQueryIEEEBlock(":SYSTem:SETup?");
+            nLength = ResultsArray.Length;
+            // Write setup string to file.
+            strPath = "c:\\scope\\config\\setup.stp";
+            FileStream fStream = File.Open(strPath, FileMode.Create);
+            fStream.Write(ResultsArray, 0, nLength);
+            fStream.Close();
+            Console.WriteLine("Setup bytes saved: {0}", nLength);
+            // Change settings with individual commands:
+            // Set vertical scale and offset.
+            myScope.DoCommand(":CHANnel1:SCALe 0.05");
+            Console.WriteLine("Channel 1 vertical scale: {0}",
+            myScope.DoQueryString(":CHANnel1:SCALe?"));
+            myScope.DoCommand(":CHANnel1:OFFSet -1.5");
+            Console.WriteLine("Channel 1 vertical offset: {0}",
+            myScope.DoQueryString(":CHANnel1:OFFSet?"));
+            // Set horizontal scale and offset.
+            myScope.DoCommand(":TIMebase:SCALe 0.0002");
+            Console.WriteLine("Timebase scale: {0}",
+            myScope.DoQueryString(":TIMebase:SCALe?"));
+            myScope.DoCommand(":TIMebase:POSition 0.0");
+            Console.WriteLine("Timebase position: {0}",
+            myScope.DoQueryString(":TIMebase:POSition?"));
+            // Set the acquisition type (NORMal, PEAK, AVERage, or HRESolution
+            myScope.DoCommand(":ACQuire:TYPE NORMal");
+            Console.WriteLine("Acquire type: {0}",
+            myScope.DoQueryString(":ACQuire:TYPE?"));
+            // Or, configure by loading a previously saved setup.
+            byte[] DataArray;
+            int nBytesWritten;
+            // Read setup string from file.
+            strPath = "c:\\scope\\config\\setup.stp";
+            DataArray = File.ReadAllBytes(strPath);
+            nBytesWritten = DataArray.Length;
+            // Restore setup string.
+            myScope.DoCommandIEEEBlock(":SYSTem:SETup", DataArray);
+            Console.WriteLine("Setup bytes restored: {0}", nBytesWritten);
+            // Capture an acquisition using :DIGitize.
+            myScope.DoCommand(":DIGitize CHANnel1");
+        }
+        /*
+        * Analyze the captured waveform.
+        * --------------------------------------------------------------
+        */
+        private static void Analyze()
+        {
+            byte[] ResultsArray; // Results array.
+            int nLength; // Number of bytes returned from instrument.
+            string strPath;
+            // Make a couple of measurements.
+            // -----------------------------------------------------------
+            myScope.DoCommand(":MEASure:SOURce CHANnel1");
+            Console.WriteLine("Measure source: {0}",
+            myScope.DoQueryString(":MEASure:SOURce?"));
+            double fResult;
+            myScope.DoCommand(":MEASure:FREQuency");
+            fResult = myScope.DoQueryNumber(":MEASure:FREQuency?");
+            Console.WriteLine("Frequency: {0:F4} kHz", fResult / 1000);
+            myScope.DoCommand(":MEASure:VAMPlitude");
+            fResult = myScope.DoQueryNumber(":MEASure:VAMPlitude?");
+            Console.WriteLine("Vertical amplitude: {0:F2} V", fResult);
+            // Download the screen image.
+            // -----------------------------------------------------------
+            myScope.DoCommand(":HARDcopy:INKSaver OFF");
+            // Get the screen data.
+            ResultsArray =
+            myScope.DoQueryIEEEBlock(":DISPlay:DATA? PNG, COLor");
+            nLength = ResultsArray.Length;
+            // Store the screen data to a file.
+            strPath = "c:\\scope\\data\\screen.png";
+            FileStream fStream = File.Open(strPath, FileMode.Create);
+            fStream.Write(ResultsArray, 0, nLength);
+            fStream.Close();
+            Console.WriteLine("Screen image ({0} bytes) written to {1}",
+            nLength, strPath);
+            // Download waveform data.
+            // -----------------------------------------------------------
+            // Set the waveform points mode.
+            myScope.DoCommand(":WAVeform:POINts:MODE RAW");
+            Console.WriteLine("Waveform points mode: {0}",
+            myScope.DoQueryString(":WAVeform:POINts:MODE?"));
+            // Get the number of waveform points available.
+            Console.WriteLine("Waveform points available: {0}",
+            myScope.DoQueryString(":WAVeform:POINts?"));
+            // Set the waveform source.
+            myScope.DoCommand(":WAVeform:SOURce CHANnel1");
+            Console.WriteLine("Waveform source: {0}",
+            myScope.DoQueryString(":WAVeform:SOURce?"));
+            // Choose the format of the data returned (WORD, BYTE, ASCII):
+            myScope.DoCommand(":WAVeform:FORMat BYTE");
+            Console.WriteLine("Waveform format: {0}",
+            myScope.DoQueryString(":WAVeform:FORMat?"));
+            // Display the waveform settings:
+            double[] fResultsArray;
+            fResultsArray = myScope.DoQueryNumbers(":WAVeform:PREamble?");
+            double fFormat = fResultsArray[0];
+            if (fFormat == 0.0)
+            {
+                Console.WriteLine("Waveform format: BYTE");
+            }
+            else if (fFormat == 1.0)
+            {
+                Console.WriteLine("Waveform format: WORD");
+            }
+            else if (fFormat == 2.0)
+            {
+                Console.WriteLine("Waveform format: ASCii");
+            }
+            double fType = fResultsArray[1];
+            if (fType == 0.0)
+            {
+                Console.WriteLine("Acquire type: NORMal");
+            }
+            else if (fType == 1.0)
+            {
+                Console.WriteLine("Acquire type: PEAK");
+            }
+            else if (fType == 2.0)
+            {
+                Console.WriteLine("Acquire type: AVERage");
+            }
+            else if (fType == 3.0)
+            {
+                Console.WriteLine("Acquire type: HRESolution");
+            }
+            double fPoints = fResultsArray[2];
+            Console.WriteLine("Waveform points: {0:e}", fPoints);
+            double fCount = fResultsArray[3];
+            Console.WriteLine("Waveform average count: {0:e}", fCount);
+            double fXincrement = fResultsArray[4];
+            Console.WriteLine("Waveform X increment: {0:e}", fXincrement);
+            double fXorigin = fResultsArray[5];
+            Console.WriteLine("Waveform X origin: {0:e}", fXorigin);
+            double fXreference = fResultsArray[6];
+            Console.WriteLine("Waveform X reference: {0:e}", fXreference);
+            double fYincrement = fResultsArray[7];
+            Console.WriteLine("Waveform Y increment: {0:e}", fYincrement);
+            double fYorigin = fResultsArray[8];
+            Console.WriteLine("Waveform Y origin: {0:e}", fYorigin);
+            double fYreference = fResultsArray[9];
+            Console.WriteLine("Waveform Y reference: {0:e}", fYreference);
+            // Read waveform data.
+            ResultsArray = myScope.DoQueryIEEEBlock(":WAVeform:DATA?");
+            nLength = ResultsArray.Length;
+            Console.WriteLine("Number of data values: {0}", nLength);
+            // Set up output file:
+            strPath = "c:\\scope\\data\\waveform_data.csv";
+            if (File.Exists(strPath)) File.Delete(strPath);
+            // Open file for output.
+            StreamWriter writer = File.CreateText(strPath);
+            // Output waveform data in CSV format.
+            for (int i = 0; i < nLength - 1; i++)
+                writer.WriteLine("{0:f9}, {1:f6}",
+                fXorigin + ((float)i * fXincrement),
+                (((float)ResultsArray[i] - fYreference)
+                * fYincrement) + fYorigin);
+            // Close output file.
+            writer.Close();
+            Console.WriteLine("Waveform format BYTE data written to {0}",
+            strPath);
+        }
+
+        private void btIniciar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                myScope = new
+                    VisaComInstrument("USB0::0x0957::0x17A6::US50210029::0::INSTR"
+                    );
+                myScope.SetTimeoutSeconds(10);
+                // Initialize - start from a known state.
+                Initialize();
+                // Capture data.
+                Capture();
+                // Analyze the captured waveform.
+                Analyze();
+            }
+            catch (System.ApplicationException err)
+            {
+                MessageBox.Show("*** VISA COM Error : " + err.Message);
+            }
+            catch (System.SystemException err)
+            {
+                MessageBox.Show("*** System Error Message : " + err.Message);
+            }
+            catch (System.Exception err)
+            {
+                System.Diagnostics.Debug.Fail("Unexpected Error");
+                MessageBox.Show("*** Unexpected Error : " + err.Message);
+            }
+            finally
+            {
+                MessageBox.Show("Close");
+            }
+
+        }
+
+            private void btParar_Click(object sender, EventArgs e)
+            {
+                chtGraf1.Series[0].Points.Clear();
+                chtGraf2.Series[0].Points.Clear();
+                chtGraf3.Series[0].Points.Clear();
+            }
+
+            private void btSair_Click(object sender, EventArgs e)
+            {
+                if (MessageBox.Show("Deseja mesmo fechar o aplicativo?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == (DialogResult.Yes))
+                {
+                    Close();
+                }
+            }
+
+            private void btTHDr_Click(object sender, EventArgs e)
+            {
+                thd_r = new Random().NextDouble();
+                thd_r = thd_r * 100;
+                listView1.Items.Add(thd_r.ToString("#") + "%");
+            }
+
+            private void timer1_Tick(object sender, EventArgs e)
+            {
+                if (chtGraf1.Series[0].Points.Count > 30)
+                {
+                    chtGraf1.Series[0].Points.RemoveAt(0);
+                    chtGraf1.Update();
+                }
+                chtGraf1.Series[0].Points.AddXY(x++, new Random().NextDouble());
+
+                if (chtGraf2.Series[0].Points.Count > 10)
+                {
+                    chtGraf2.Series[0].Points.RemoveAt(0);
+                    chtGraf2.Update();
+                }
+                chtGraf2.Series[0].Points.AddY(new Random().NextDouble());
+
+                if (chtGraf3.Series[0].Points.Count > 20)
+                {
+                    chtGraf3.Series[0].Points.RemoveAt(0);
+                    chtGraf3.Update();
+                }
+                chtGraf3.Series[0].Points.AddXY(x++, new Random().NextDouble());
+            }
+     }
+
+    class VisaComInstrument
+    {
+        private ResourceManager m_ResourceManager;
+        private FormattedIO488 m_IoObject;
+        private string m_strVisaAddress;
+        // Constructor.
+        public VisaComInstrument(string strVisaAddress)
+        {
+            // Save VISA address in member variable.
+            m_strVisaAddress = strVisaAddress;
+            // Open the default VISA COM IO object.
+            OpenIo();
+            // Clear the interface.
+            m_IoObject.IO.Clear();
+        }
+        public void DoCommand(string strCommand)
+        {
+            // Send the command.
+            m_IoObject.WriteString(strCommand, true);
+            // Check for inst errors.
+            CheckInstrumentErrors(strCommand);
+        }
+        public void DoCommandIEEEBlock(string strCommand,
+        byte[] DataArray)
+        {
+            // Send the command to the device.
+            m_IoObject.WriteIEEEBlock(strCommand, DataArray, true);
+            // Check for inst errors.
+            CheckInstrumentErrors(strCommand);
+        }
+        public string DoQueryString(string strQuery)
+        {
+            // Send the query.
+            m_IoObject.WriteString(strQuery, true);
+            // Get the result string.
+            string strResults;
+            strResults = m_IoObject.ReadString();
+            // Check for inst errors.
+            CheckInstrumentErrors(strQuery);
+            // Return results string.
+            return strResults;
+        }
+        public double DoQueryNumber(string strQuery)
+        {
+            // Send the query.
+            m_IoObject.WriteString(strQuery, true);
+            // Get the result number.
+            double fResult;
+            fResult = (double)m_IoObject.ReadNumber(
+            IEEEASCIIType.ASCIIType_R8, true);
+            // Check for inst errors.
+            CheckInstrumentErrors(strQuery);
+            // Return result number.
+            return fResult;
+        }
+        public double[] DoQueryNumbers(string strQuery)
+        {
+            // Send the query.
+            m_IoObject.WriteString(strQuery, true);
+            // Get the result numbers.
+            double[] fResultsArray;
+            fResultsArray = (double[])m_IoObject.ReadList(
+            IEEEASCIIType.ASCIIType_R8, ",;");
+            // Check for inst errors.
+            CheckInstrumentErrors(strQuery);
+            // Return result numbers.
+            return fResultsArray;
+        }
+        public byte[] DoQueryIEEEBlock(string strQuery)
+        {
+            // Send the query.
+            m_IoObject.WriteString(strQuery, true);
+            // Get the results array.
+            System.Threading.Thread.Sleep(2000); // Delay before reading.
+            byte[] ResultsArray;
+            ResultsArray = (byte[])m_IoObject.ReadIEEEBlock(
+            IEEEBinaryType.BinaryType_UI1, false, true);
+            // Check for inst errors.
+            CheckInstrumentErrors(strQuery);
+            // Return results array.
+            return ResultsArray;
+        }
+        private void CheckInstrumentErrors(string strCommand)
+        {
+            // Check for instrument errors.
+            string strInstrumentError;
+            bool bFirstError = true;
+            do // While not "0,No error".
+            {
+                m_IoObject.WriteString(":SYSTem:ERRor?", true);
+                strInstrumentError = m_IoObject.ReadString();
+                if (!strInstrumentError.ToString().StartsWith("+0,"))
+                {
+                    if (bFirstError)
+                    {
+                        Console.WriteLine("ERROR(s) for command '{0}': ",
+                        strCommand);
+                        bFirstError = false;
+                    }
+                    Console.Write(strInstrumentError);
+                }
+            } while (!strInstrumentError.ToString().StartsWith("+0,"));
+        }
+        private void OpenIo()
+        {
+            m_ResourceManager = new ResourceManager();
+            m_IoObject = new FormattedIO488();
+            // Open the default VISA COM IO object.
+            try
+            {
+                m_IoObject.IO =
+                (IMessage)m_ResourceManager.Open(m_strVisaAddress,
+                AccessMode.NO_LOCK, 0, "");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: {0}", e.Message);
+            }
+        }
+        public void SetTimeoutSeconds(int nSeconds)
+        {
+            m_IoObject.IO.Timeout = nSeconds * 1000;
+        }
+
+        public void Close()
+        {
+            try
+            {
+                m_IoObject.IO.Close();
+            }
+            catch { }
+            try
+            {
+                Marshal.ReleaseComObject(m_IoObject);
+            }
+            catch { }
+            try
+            {
+                Marshal.ReleaseComObject(m_ResourceManager);
+            }
+            catch { }
+        }
+    }
+}
