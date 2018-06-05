@@ -39,15 +39,18 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.pnBut = new System.Windows.Forms.Panel();
-            this.lbVrmsNHarm = new System.Windows.Forms.Label();
-            this.lbVrmsFund = new System.Windows.Forms.Label();
-            this.btTHDr = new System.Windows.Forms.Button();
+            this.gbFinalizar = new System.Windows.Forms.GroupBox();
             this.btParar = new System.Windows.Forms.Button();
-            this.lbNumHarm = new System.Windows.Forms.Label();
-            this.lbFreqFund = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btSair = new System.Windows.Forms.Button();
+            this.gbSaida = new System.Windows.Forms.GroupBox();
+            this.lbVrmsFund = new System.Windows.Forms.Label();
+            this.lbVrmsNHarm = new System.Windows.Forms.Label();
+            this.gbEntrada = new System.Windows.Forms.GroupBox();
+            this.lbFreqFund = new System.Windows.Forms.Label();
+            this.btTHDr = new System.Windows.Forms.Button();
+            this.tbFreq = new System.Windows.Forms.TextBox();
+            this.lbNumHarm = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.btCapturar = new System.Windows.Forms.Button();
             this.pnChart = new System.Windows.Forms.Panel();
             this.chtGraf3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -57,8 +60,10 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.lbTabela = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.pnBut.SuspendLayout();
+            this.gbFinalizar.SuspendLayout();
+            this.gbSaida.SuspendLayout();
+            this.gbEntrada.SuspendLayout();
             this.pnChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf2)).BeginInit();
@@ -68,96 +73,38 @@
             // 
             // pnBut
             // 
-            this.pnBut.Controls.Add(this.lbVrmsNHarm);
-            this.pnBut.Controls.Add(this.lbVrmsFund);
-            this.pnBut.Controls.Add(this.btTHDr);
-            this.pnBut.Controls.Add(this.btParar);
-            this.pnBut.Controls.Add(this.lbNumHarm);
-            this.pnBut.Controls.Add(this.lbFreqFund);
-            this.pnBut.Controls.Add(this.textBox2);
-            this.pnBut.Controls.Add(this.textBox1);
-            this.pnBut.Controls.Add(this.btSair);
-            this.pnBut.Controls.Add(this.btCapturar);
+            this.pnBut.Controls.Add(this.gbFinalizar);
+            this.pnBut.Controls.Add(this.gbSaida);
+            this.pnBut.Controls.Add(this.gbEntrada);
             this.pnBut.Location = new System.Drawing.Point(12, 12);
             this.pnBut.Name = "pnBut";
             this.pnBut.Size = new System.Drawing.Size(236, 572);
             this.pnBut.TabIndex = 0;
             // 
-            // lbVrmsNHarm
+            // gbFinalizar
             // 
-            this.lbVrmsNHarm.AutoSize = true;
-            this.lbVrmsNHarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVrmsNHarm.Location = new System.Drawing.Point(28, 286);
-            this.lbVrmsNHarm.Name = "lbVrmsNHarm";
-            this.lbVrmsNHarm.Size = new System.Drawing.Size(165, 13);
-            this.lbVrmsNHarm.TabIndex = 9;
-            this.lbVrmsNHarm.Text = "Vrms do N-ésimo Harmônico";
-            // 
-            // lbVrmsFund
-            // 
-            this.lbVrmsFund.AutoSize = true;
-            this.lbVrmsFund.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVrmsFund.Location = new System.Drawing.Point(28, 248);
-            this.lbVrmsFund.Name = "lbVrmsFund";
-            this.lbVrmsFund.Size = new System.Drawing.Size(195, 13);
-            this.lbVrmsFund.TabIndex = 8;
-            this.lbVrmsFund.Text = "Vrms da Frequência Fundamental";
-            // 
-            // btTHDr
-            // 
-            this.btTHDr.Location = new System.Drawing.Point(31, 400);
-            this.btTHDr.Name = "btTHDr";
-            this.btTHDr.Size = new System.Drawing.Size(169, 23);
-            this.btTHDr.TabIndex = 7;
-            this.btTHDr.Text = "Obter THDr";
-            this.btTHDr.UseVisualStyleBackColor = true;
-            this.btTHDr.Click += new System.EventHandler(this.btTHDr_Click);
+            this.gbFinalizar.Controls.Add(this.btParar);
+            this.gbFinalizar.Controls.Add(this.btSair);
+            this.gbFinalizar.Location = new System.Drawing.Point(3, 382);
+            this.gbFinalizar.Name = "gbFinalizar";
+            this.gbFinalizar.Size = new System.Drawing.Size(222, 162);
+            this.gbFinalizar.TabIndex = 12;
+            this.gbFinalizar.TabStop = false;
+            this.gbFinalizar.Text = "Resetar";
             // 
             // btParar
             // 
-            this.btParar.Location = new System.Drawing.Point(31, 359);
+            this.btParar.Location = new System.Drawing.Point(28, 38);
             this.btParar.Name = "btParar";
             this.btParar.Size = new System.Drawing.Size(169, 23);
             this.btParar.TabIndex = 6;
-            this.btParar.Text = "Parar";
+            this.btParar.Text = "Limpar";
             this.btParar.UseVisualStyleBackColor = true;
             this.btParar.Click += new System.EventHandler(this.btParar_Click);
             // 
-            // lbNumHarm
-            // 
-            this.lbNumHarm.AutoSize = true;
-            this.lbNumHarm.Location = new System.Drawing.Point(13, 127);
-            this.lbNumHarm.Name = "lbNumHarm";
-            this.lbNumHarm.Size = new System.Drawing.Size(197, 13);
-            this.lbNumHarm.TabIndex = 5;
-            this.lbNumHarm.Text = "Número do Último Harmônico Relevante";
-            // 
-            // lbFreqFund
-            // 
-            this.lbFreqFund.AutoSize = true;
-            this.lbFreqFund.Location = new System.Drawing.Point(21, 73);
-            this.lbFreqFund.Name = "lbFreqFund";
-            this.lbFreqFund.Size = new System.Drawing.Size(179, 13);
-            this.lbFreqFund.TabIndex = 4;
-            this.lbFreqFund.Text = "Frequência Fundamental da Entrada";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(31, 143);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(169, 20);
-            this.textBox2.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(31, 89);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(169, 20);
-            this.textBox1.TabIndex = 2;
-            // 
             // btSair
             // 
-            this.btSair.Location = new System.Drawing.Point(31, 521);
+            this.btSair.Location = new System.Drawing.Point(28, 116);
             this.btSair.Name = "btSair";
             this.btSair.Size = new System.Drawing.Size(169, 23);
             this.btSair.TabIndex = 1;
@@ -165,9 +112,97 @@
             this.btSair.UseVisualStyleBackColor = true;
             this.btSair.Click += new System.EventHandler(this.btSair_Click);
             // 
+            // gbSaida
+            // 
+            this.gbSaida.Controls.Add(this.lbVrmsFund);
+            this.gbSaida.Controls.Add(this.lbVrmsNHarm);
+            this.gbSaida.Location = new System.Drawing.Point(3, 246);
+            this.gbSaida.Name = "gbSaida";
+            this.gbSaida.Size = new System.Drawing.Size(222, 107);
+            this.gbSaida.TabIndex = 11;
+            this.gbSaida.TabStop = false;
+            this.gbSaida.Text = "Saida";
+            // 
+            // lbVrmsFund
+            // 
+            this.lbVrmsFund.AutoSize = true;
+            this.lbVrmsFund.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVrmsFund.Location = new System.Drawing.Point(4, 27);
+            this.lbVrmsFund.Name = "lbVrmsFund";
+            this.lbVrmsFund.Size = new System.Drawing.Size(195, 13);
+            this.lbVrmsFund.TabIndex = 8;
+            this.lbVrmsFund.Text = "Vrms da Frequência Fundamental";
+            // 
+            // lbVrmsNHarm
+            // 
+            this.lbVrmsNHarm.AutoSize = true;
+            this.lbVrmsNHarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVrmsNHarm.Location = new System.Drawing.Point(4, 65);
+            this.lbVrmsNHarm.Name = "lbVrmsNHarm";
+            this.lbVrmsNHarm.Size = new System.Drawing.Size(165, 13);
+            this.lbVrmsNHarm.TabIndex = 9;
+            this.lbVrmsNHarm.Text = "Vrms do N-ésimo Harmônico";
+            // 
+            // gbEntrada
+            // 
+            this.gbEntrada.Controls.Add(this.lbFreqFund);
+            this.gbEntrada.Controls.Add(this.btTHDr);
+            this.gbEntrada.Controls.Add(this.tbFreq);
+            this.gbEntrada.Controls.Add(this.lbNumHarm);
+            this.gbEntrada.Controls.Add(this.textBox2);
+            this.gbEntrada.Controls.Add(this.btCapturar);
+            this.gbEntrada.Location = new System.Drawing.Point(3, 3);
+            this.gbEntrada.Name = "gbEntrada";
+            this.gbEntrada.Size = new System.Drawing.Size(220, 237);
+            this.gbEntrada.TabIndex = 10;
+            this.gbEntrada.TabStop = false;
+            this.gbEntrada.Text = "Entrada";
+            // 
+            // lbFreqFund
+            // 
+            this.lbFreqFund.AutoSize = true;
+            this.lbFreqFund.Location = new System.Drawing.Point(25, 39);
+            this.lbFreqFund.Name = "lbFreqFund";
+            this.lbFreqFund.Size = new System.Drawing.Size(179, 13);
+            this.lbFreqFund.TabIndex = 4;
+            this.lbFreqFund.Text = "Frequência Fundamental da Entrada";
+            // 
+            // btTHDr
+            // 
+            this.btTHDr.Location = new System.Drawing.Point(35, 198);
+            this.btTHDr.Name = "btTHDr";
+            this.btTHDr.Size = new System.Drawing.Size(169, 23);
+            this.btTHDr.TabIndex = 7;
+            this.btTHDr.Text = "Obter THDr";
+            this.btTHDr.UseVisualStyleBackColor = true;
+            this.btTHDr.Click += new System.EventHandler(this.btTHDr_Click);
+            // 
+            // tbFreq
+            // 
+            this.tbFreq.Location = new System.Drawing.Point(33, 55);
+            this.tbFreq.Name = "tbFreq";
+            this.tbFreq.Size = new System.Drawing.Size(169, 20);
+            this.tbFreq.TabIndex = 2;
+            // 
+            // lbNumHarm
+            // 
+            this.lbNumHarm.AutoSize = true;
+            this.lbNumHarm.Location = new System.Drawing.Point(25, 90);
+            this.lbNumHarm.Name = "lbNumHarm";
+            this.lbNumHarm.Size = new System.Drawing.Size(197, 13);
+            this.lbNumHarm.TabIndex = 5;
+            this.lbNumHarm.Text = "Número do Último Harmônico Relevante";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(35, 106);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(169, 20);
+            this.textBox2.TabIndex = 3;
+            // 
             // btCapturar
             // 
-            this.btCapturar.Location = new System.Drawing.Point(31, 191);
+            this.btCapturar.Location = new System.Drawing.Point(35, 153);
             this.btCapturar.Name = "btCapturar";
             this.btCapturar.Size = new System.Drawing.Size(169, 23);
             this.btCapturar.TabIndex = 0;
@@ -288,7 +323,11 @@
             this.Name = "Form1";
             this.Text = "Total Harmonic Distortion Calculator";
             this.pnBut.ResumeLayout(false);
-            this.pnBut.PerformLayout();
+            this.gbFinalizar.ResumeLayout(false);
+            this.gbSaida.ResumeLayout(false);
+            this.gbSaida.PerformLayout();
+            this.gbEntrada.ResumeLayout(false);
+            this.gbEntrada.PerformLayout();
             this.pnChart.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf2)).EndInit();
@@ -313,14 +352,16 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtGraf3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbFreq;
         private System.Windows.Forms.Label lbNumHarm;
         private System.Windows.Forms.Label lbFreqFund;
         private System.Windows.Forms.Button btTHDr;
         private System.Windows.Forms.Button btParar;
         private System.Windows.Forms.Label lbVrmsNHarm;
         private System.Windows.Forms.Label lbVrmsFund;
-        private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.GroupBox gbFinalizar;
+        private System.Windows.Forms.GroupBox gbSaida;
+        private System.Windows.Forms.GroupBox gbEntrada;
     }
 }
 

@@ -9,3 +9,14 @@ C:\Users\brasi\source\repos\THD_App\THD_App\obj\Debug\THD_App.exe
 C:\Users\brasi\source\repos\THD_App\THD_App\obj\Debug\THD_App.pdb
 C:\Users\brasi\source\repos\THD_App\THD_App\obj\Debug\THD_App.csproj.ResolveComReference.cache
 C:\Users\brasi\source\repos\THD_App\THD_App\obj\Debug\THD_App.Form1.resources
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\bin\Debug\THD_App.exe.config
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\bin\Debug\THD_App.exe
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\bin\Debug\THD_App.pdb
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.csprojAssemblyReference.cache
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.csproj.ResolveComReference.cache
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.Form1.resources
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.Properties.Resources.resources
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.csproj.GenerateResource.cache
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.csproj.CoreCompileInputs.cache
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.exe
+C:\Users\brasi\source\repos\THD_App 2.0\THD_App\obj\Debug\THD_App.pdb

@@ -23,10 +23,10 @@ namespace THD_App
             chtGraf1.Legends.Clear();
             chtGraf1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineRange;
             chtGraf2.Legends.Clear();
-            chtGraf2.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
-            chtGraf2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Stock;
+            //chtGraf2.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chtGraf2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             chtGraf3.Legends.Clear();
-            chtGraf3.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineRange;
+            chtGraf3.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Stock;
 
             timer1.Enabled = false;
         }
@@ -46,7 +46,7 @@ namespace THD_App
             // Get and display the device's *IDN? string.
             strResults = myScope.DoQueryString("*IDN?");
 
-            MessageBox.Show("*IDN? result is: {0}", strResults);
+            MessageBox.Show("*IDN? result is: " + strResults, "Inicialização do Osciloscópio");
             //Console.WriteLine("*IDN? result is: {0}", strResults);
             // Clear status and load the default setup.
             myScope.DoCommand("*CLS");
@@ -62,18 +62,14 @@ namespace THD_App
             myScope.DoCommand(":AUToscale");
             // Set trigger mode (EDGE, PULSe, PATTern, etc., and input source.
             myScope.DoCommand(":TRIGger:MODE EDGE");
-            Console.WriteLine("Trigger mode: {0}",
-            myScope.DoQueryString(":TRIGger:MODE?"));
+            MessageBox.Show("Trigger mode: " + myScope.DoQueryString(":TRIGger:MODE?"));
             // Set EDGE trigger parameters.
             myScope.DoCommand(":TRIGger:EDGE:SOURCe CHANnel1");
-            Console.WriteLine("Trigger edge source: {0}",
-            myScope.DoQueryString(":TRIGger:EDGE:SOURce?"));
-            myScope.DoCommand(":TRIGger:EDGE:LEVel 1.5");
-            Console.WriteLine("Trigger edge level: {0}",
-            myScope.DoQueryString(":TRIGger:EDGE:LEVel?"));
+            MessageBox.Show("Trigger edge source: " + myScope.DoQueryString(":TRIGger:EDGE:SOURce?"));
+            myScope.DoCommand(":TRIGger:EDGE:LEVel 4.0");
+            MessageBox.Show("Trigger edge level: " + myScope.DoQueryString(":TRIGger:EDGE:LEVel?"));
             myScope.DoCommand(":TRIGger:EDGE:SLOPe POSitive");
-            Console.WriteLine("Trigger edge slope: {0}",
-            myScope.DoQueryString(":TRIGger:EDGE:SLOPe?"));
+            MessageBox.Show("Trigger edge slope: " + myScope.DoQueryString(":TRIGger:EDGE:SLOPe?"));
             // Save oscilloscope configuration.
             byte[] ResultsArray; // Results array.
             int nLength; // Number of bytes returned from instrument.
@@ -86,26 +82,21 @@ namespace THD_App
             FileStream fStream = File.Open(strPath, FileMode.Create);
             fStream.Write(ResultsArray, 0, nLength);
             fStream.Close();
-            Console.WriteLine("Setup bytes saved: {0}", nLength);
+            MessageBox.Show("Setup bytes saved: " + nLength);
             // Change settings with individual commands:
             // Set vertical scale and offset.
-            myScope.DoCommand(":CHANnel1:SCALe 0.05");
-            Console.WriteLine("Channel 1 vertical scale: {0}",
-            myScope.DoQueryString(":CHANnel1:SCALe?"));
-            myScope.DoCommand(":CHANnel1:OFFSet -1.5");
-            Console.WriteLine("Channel 1 vertical offset: {0}",
-            myScope.DoQueryString(":CHANnel1:OFFSet?"));
+            myScope.DoCommand(":CHANnel1:SCALe 10.0");
+            MessageBox.Show("Channel 1 vertical scale: " + myScope.DoQueryString(":CHANnel1:SCALe?"));
+            myScope.DoCommand(":CHANnel1:OFFSet 0.0");
+            MessageBox.Show("Channel 1 vertical offset: " + myScope.DoQueryString(":CHANnel1:OFFSet?"));
             // Set horizontal scale and offset.
             myScope.DoCommand(":TIMebase:SCALe 0.0002");
-            Console.WriteLine("Timebase scale: {0}",
-            myScope.DoQueryString(":TIMebase:SCALe?"));
+            MessageBox.Show("Timebase scale: " + myScope.DoQueryString(":TIMebase:SCALe?"));
             myScope.DoCommand(":TIMebase:POSition 0.0");
-            Console.WriteLine("Timebase position: {0}",
-            myScope.DoQueryString(":TIMebase:POSition?"));
+            MessageBox.Show("Timebase position: " + myScope.DoQueryString(":TIMebase:POSition?"));
             // Set the acquisition type (NORMal, PEAK, AVERage, or HRESolution
             myScope.DoCommand(":ACQuire:TYPE NORMal");
-            Console.WriteLine("Acquire type: {0}",
-            myScope.DoQueryString(":ACQuire:TYPE?"));
+            MessageBox.Show("Acquire type: " + myScope.DoQueryString(":ACQuire:TYPE?"));
             // Or, configure by loading a previously saved setup.
             byte[] DataArray;
             int nBytesWritten;
@@ -115,7 +106,7 @@ namespace THD_App
             nBytesWritten = DataArray.Length;
             // Restore setup string.
             myScope.DoCommandIEEEBlock(":SYSTem:SETup", DataArray);
-            Console.WriteLine("Setup bytes restored: {0}", nBytesWritten);
+            MessageBox.Show("Setup bytes restored: " + nBytesWritten);
             // Capture an acquisition using :DIGitize.
             myScope.DoCommand(":DIGitize CHANnel1");
         }
@@ -123,6 +114,9 @@ namespace THD_App
         * Analyze the captured waveform.
         * --------------------------------------------------------------
         */
+        static double freqFund, vRMSChan1;
+        static byte[] pontoGraf2 = new byte[50000];
+
         private static void Analyze()
         {
             byte[] ResultsArray; // Results array.
@@ -131,15 +125,18 @@ namespace THD_App
             // Make a couple of measurements.
             // -----------------------------------------------------------
             myScope.DoCommand(":MEASure:SOURce CHANnel1");
-            Console.WriteLine("Measure source: {0}",
-            myScope.DoQueryString(":MEASure:SOURce?"));
+            MessageBox.Show("Measure source: " + myScope.DoQueryString(":MEASure:SOURce?"));
             double fResult;
             myScope.DoCommand(":MEASure:FREQuency");
             fResult = myScope.DoQueryNumber(":MEASure:FREQuency?");
-            Console.WriteLine("Frequency: {0:F4} kHz", fResult / 1000);
+            freqFund = fResult / 1000;
+            MessageBox.Show(freqFund.ToString() + "kHz", "Frequência");
             myScope.DoCommand(":MEASure:VAMPlitude");
             fResult = myScope.DoQueryNumber(":MEASure:VAMPlitude?");
-            Console.WriteLine("Vertical amplitude: {0:F2} V", fResult);
+            MessageBox.Show(fResult.ToString() ,"Amplitude Vertical");
+            fResult = myScope.DoQueryNumber(":MEASure:VRMS?");
+            vRMSChan1 = myScope.DoQueryNumber(":MEASure:VRMS?");
+            MessageBox.Show(fResult.ToString(), "VRMS");
             // Download the screen image.
             // -----------------------------------------------------------
             myScope.DoCommand(":HARDcopy:INKSaver OFF");
@@ -152,25 +149,21 @@ namespace THD_App
             FileStream fStream = File.Open(strPath, FileMode.Create);
             fStream.Write(ResultsArray, 0, nLength);
             fStream.Close();
-            Console.WriteLine("Screen image ({0} bytes) written to {1}",
-            nLength, strPath);
+            MessageBox.Show("Screen image (" + nLength + " bytes) written to " + strPath);
             // Download waveform data.
             // -----------------------------------------------------------
             // Set the waveform points mode.
             myScope.DoCommand(":WAVeform:POINts:MODE RAW");
-            Console.WriteLine("Waveform points mode: {0}",
-            myScope.DoQueryString(":WAVeform:POINts:MODE?"));
+            MessageBox.Show("Waveform points mode: " + myScope.DoQueryString(":WAVeform:POINts:MODE?"));
             // Get the number of waveform points available.
-            Console.WriteLine("Waveform points available: {0}",
-            myScope.DoQueryString(":WAVeform:POINts?"));
+            MessageBox.Show("Waveform points available: " + myScope.DoQueryString(":WAVeform:POINts?"));
+
             // Set the waveform source.
             myScope.DoCommand(":WAVeform:SOURce CHANnel1");
-            Console.WriteLine("Waveform source: {0}",
-            myScope.DoQueryString(":WAVeform:SOURce?"));
+            MessageBox.Show("Waveform source: " + myScope.DoQueryString(":WAVeform:SOURce?"));
             // Choose the format of the data returned (WORD, BYTE, ASCII):
             myScope.DoCommand(":WAVeform:FORMat BYTE");
-            Console.WriteLine("Waveform format: {0}",
-            myScope.DoQueryString(":WAVeform:FORMat?"));
+            MessageBox.Show("Waveform format: " + myScope.DoQueryString(":WAVeform:FORMat?"));
             // Display the waveform settings:
             double[] fResultsArray;
             fResultsArray = myScope.DoQueryNumbers(":WAVeform:PREamble?");
@@ -213,7 +206,8 @@ namespace THD_App
             double fXorigin = fResultsArray[5];
             Console.WriteLine("Waveform X origin: {0:e}", fXorigin);
             double fXreference = fResultsArray[6];
-            Console.WriteLine("Waveform X reference: {0:e}", fXreference);
+            Console.WriteLine("W" +
+                "aveform X reference: {0:e}", fXreference);
             double fYincrement = fResultsArray[7];
             Console.WriteLine("Waveform Y increment: {0:e}", fYincrement);
             double fYorigin = fResultsArray[8];
@@ -222,6 +216,10 @@ namespace THD_App
             Console.WriteLine("Waveform Y reference: {0:e}", fYreference);
             // Read waveform data.
             ResultsArray = myScope.DoQueryIEEEBlock(":WAVeform:DATA?");
+
+            pontoGraf2 = ResultsArray;
+            MessageBox.Show(pontoGraf2.Length.ToString());
+
             nLength = ResultsArray.Length;
             Console.WriteLine("Number of data values: {0}", nLength);
             // Set up output file:
@@ -239,6 +237,12 @@ namespace THD_App
             writer.Close();
             Console.WriteLine("Waveform format BYTE data written to {0}",
             strPath);
+            
+        }
+
+        private void genWave()
+        {
+            //myScope.DoCommand(":WGEN:FREQuency ");
         }
 
         private void btIniciar_Click(object sender, EventArgs e)
@@ -246,7 +250,7 @@ namespace THD_App
             try
             {
                 myScope = new
-                    VisaComInstrument("USB0::0x0957::0x17A6::US50210029::0::INSTR"
+                    VisaComInstrument("USB0::0x2A8D::0x179B::CN57342208::0::INSTR"
                     );
                 myScope.SetTimeoutSeconds(10);
                 // Initialize - start from a known state.
@@ -255,6 +259,14 @@ namespace THD_App
                 Capture();
                 // Analyze the captured waveform.
                 Analyze();
+                lbVrmsFund.Text = freqFund.ToString() + "kHz";
+                lbVrmsNHarm.Text = vRMSChan1.ToString() + "V";
+
+                for (int i = 0; i < pontoGraf2.Length; i++)
+                {
+                    chtGraf2.Series[0].Points.AddY(pontoGraf2[i]);
+                }
+                
             }
             catch (System.ApplicationException err)
             {
@@ -271,7 +283,8 @@ namespace THD_App
             }
             finally
             {
-                MessageBox.Show("Close");
+                //MessageBox.Show("Conecte o Osciloscópio");
+                //myScope.Close();
             }
 
         }
@@ -281,6 +294,7 @@ namespace THD_App
                 chtGraf1.Series[0].Points.Clear();
                 chtGraf2.Series[0].Points.Clear();
                 chtGraf3.Series[0].Points.Clear();
+                timer1.Enabled = false;
             }
 
             private void btSair_Click(object sender, EventArgs e)
@@ -307,19 +321,14 @@ namespace THD_App
                 }
                 chtGraf1.Series[0].Points.AddXY(x++, new Random().NextDouble());
 
-                if (chtGraf2.Series[0].Points.Count > 10)
-                {
-                    chtGraf2.Series[0].Points.RemoveAt(0);
-                    chtGraf2.Update();
-                }
-                chtGraf2.Series[0].Points.AddY(new Random().NextDouble());
+                //chtGraf2.Series[0].Points.AddY(pontoGraf2);
 
                 if (chtGraf3.Series[0].Points.Count > 20)
                 {
                     chtGraf3.Series[0].Points.RemoveAt(0);
                     chtGraf3.Update();
                 }
-                chtGraf3.Series[0].Points.AddXY(x++, new Random().NextDouble());
+                chtGraf3.Series[0].Points.AddY(new Random().NextDouble());
             }
      }
 
@@ -328,7 +337,7 @@ namespace THD_App
         private ResourceManager m_ResourceManager;
         private FormattedIO488 m_IoObject;
         private string m_strVisaAddress;
-        // Constructor.
+        // Constructor
         public VisaComInstrument(string strVisaAddress)
         {
             // Save VISA address in member variable.
