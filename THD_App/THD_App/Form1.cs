@@ -21,12 +21,11 @@ namespace THD_App
 
             //Tirando a legenda do gráfico e selecionando o tipo de gráfico
             chtGraf1.Legends.Clear();
-            chtGraf1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineRange;
+            chtGraf1.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
             chtGraf2.Legends.Clear();
-            //chtGraf2.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
-            chtGraf2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            chtGraf2.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             chtGraf3.Legends.Clear();
-            chtGraf3.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Stock;
+            chtGraf3.Series[0].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineRange;
 
             timer1.Enabled = false;
         }
@@ -59,17 +58,17 @@ namespace THD_App
         private static void Capture()
         {
             // Use auto-scale to automatically configure oscilloscope.
-            myScope.DoCommand(":AUToscale");
+            //myScope.DoCommand(":AUToscale");
             // Set trigger mode (EDGE, PULSe, PATTern, etc., and input source.
             myScope.DoCommand(":TRIGger:MODE EDGE");
-            MessageBox.Show("Trigger mode: " + myScope.DoQueryString(":TRIGger:MODE?"));
+            //MessageBox.Show("Trigger mode: " + myScope.DoQueryString(":TRIGger:MODE?"));
             // Set EDGE trigger parameters.
             myScope.DoCommand(":TRIGger:EDGE:SOURCe CHANnel1");
-            MessageBox.Show("Trigger edge source: " + myScope.DoQueryString(":TRIGger:EDGE:SOURce?"));
+            //MessageBox.Show("Trigger edge source: " + myScope.DoQueryString(":TRIGger:EDGE:SOURce?"));
             myScope.DoCommand(":TRIGger:EDGE:LEVel 4.0");
-            MessageBox.Show("Trigger edge level: " + myScope.DoQueryString(":TRIGger:EDGE:LEVel?"));
+            //MessageBox.Show("Trigger edge level: " + myScope.DoQueryString(":TRIGger:EDGE:LEVel?"));
             myScope.DoCommand(":TRIGger:EDGE:SLOPe POSitive");
-            MessageBox.Show("Trigger edge slope: " + myScope.DoQueryString(":TRIGger:EDGE:SLOPe?"));
+            //MessageBox.Show("Trigger edge slope: " + myScope.DoQueryString(":TRIGger:EDGE:SLOPe?"));
             // Save oscilloscope configuration.
             byte[] ResultsArray; // Results array.
             int nLength; // Number of bytes returned from instrument.
@@ -82,21 +81,21 @@ namespace THD_App
             FileStream fStream = File.Open(strPath, FileMode.Create);
             fStream.Write(ResultsArray, 0, nLength);
             fStream.Close();
-            MessageBox.Show("Setup bytes saved: " + nLength);
+            //MessageBox.Show("Setup bytes saved: " + nLength);
             // Change settings with individual commands:
             // Set vertical scale and offset.
-            myScope.DoCommand(":CHANnel1:SCALe 10.0");
-            MessageBox.Show("Channel 1 vertical scale: " + myScope.DoQueryString(":CHANnel1:SCALe?"));
-            myScope.DoCommand(":CHANnel1:OFFSet 0.0");
-            MessageBox.Show("Channel 1 vertical offset: " + myScope.DoQueryString(":CHANnel1:OFFSet?"));
+            //myScope.DoCommand(":CHANnel1:SCALe 10.0");
+            //MessageBox.Show("Channel 1 vertical scale: " + myScope.DoQueryString(":CHANnel1:SCALe?"));
+            //myScope.DoCommand(":CHANnel1:OFFSet 0.0");
+            //MessageBox.Show("Channel 1 vertical offset: " + myScope.DoQueryString(":CHANnel1:OFFSet?"));
             // Set horizontal scale and offset.
-            myScope.DoCommand(":TIMebase:SCALe 0.0002");
-            MessageBox.Show("Timebase scale: " + myScope.DoQueryString(":TIMebase:SCALe?"));
+            //myScope.DoCommand(":TIMebase:SCALe 0.0002");
+            //MessageBox.Show("Timebase scale: " + myScope.DoQueryString(":TIMebase:SCALe?"));
             myScope.DoCommand(":TIMebase:POSition 0.0");
-            MessageBox.Show("Timebase position: " + myScope.DoQueryString(":TIMebase:POSition?"));
+            //MessageBox.Show("Timebase position: " + myScope.DoQueryString(":TIMebase:POSition?"));
             // Set the acquisition type (NORMal, PEAK, AVERage, or HRESolution
             myScope.DoCommand(":ACQuire:TYPE NORMal");
-            MessageBox.Show("Acquire type: " + myScope.DoQueryString(":ACQuire:TYPE?"));
+            //MessageBox.Show("Acquire type: " + myScope.DoQueryString(":ACQuire:TYPE?"));
             // Or, configure by loading a previously saved setup.
             byte[] DataArray;
             int nBytesWritten;
@@ -108,14 +107,15 @@ namespace THD_App
             myScope.DoCommandIEEEBlock(":SYSTem:SETup", DataArray);
             MessageBox.Show("Setup bytes restored: " + nBytesWritten);
             // Capture an acquisition using :DIGitize.
-            myScope.DoCommand(":DIGitize CHANnel1");
+            //myScope.DoCommand(":DIGitize CHANnel1");
         }
         /*
         * Analyze the captured waveform.
         * --------------------------------------------------------------
         */
         static double freqFund, vRMSChan1;
-        static byte[] pontoGraf2 = new byte[50000];
+        static string teste;
+        static byte[] pontoGraf2 = new byte[50000], pontoGraf3 = new byte[50000];
 
         private static void Analyze()
         {
@@ -127,16 +127,14 @@ namespace THD_App
             myScope.DoCommand(":MEASure:SOURce CHANnel1");
             MessageBox.Show("Measure source: " + myScope.DoQueryString(":MEASure:SOURce?"));
             double fResult;
-            myScope.DoCommand(":MEASure:FREQuency");
+            //myScope.DoCommand(":MEASure:FREQuency");
             fResult = myScope.DoQueryNumber(":MEASure:FREQuency?");
             freqFund = fResult / 1000;
-            MessageBox.Show(freqFund.ToString() + "kHz", "Frequência");
+            //MessageBox.Show(freqFund.ToString() + "kHz", "Frequência");
             myScope.DoCommand(":MEASure:VAMPlitude");
-            fResult = myScope.DoQueryNumber(":MEASure:VAMPlitude?");
-            MessageBox.Show(fResult.ToString() ,"Amplitude Vertical");
-            fResult = myScope.DoQueryNumber(":MEASure:VRMS?");
+
             vRMSChan1 = myScope.DoQueryNumber(":MEASure:VRMS?");
-            MessageBox.Show(fResult.ToString(), "VRMS");
+            //MessageBox.Show(fResult.ToString(), "VRMS");
             // Download the screen image.
             // -----------------------------------------------------------
             myScope.DoCommand(":HARDcopy:INKSaver OFF");
@@ -198,22 +196,21 @@ namespace THD_App
                 Console.WriteLine("Acquire type: HRESolution");
             }
             double fPoints = fResultsArray[2];
-            Console.WriteLine("Waveform points: {0:e}", fPoints);
+            MessageBox.Show("Waveform points: " + fPoints);
             double fCount = fResultsArray[3];
-            Console.WriteLine("Waveform average count: {0:e}", fCount);
+            MessageBox.Show("Waveform average count: " + fCount);
             double fXincrement = fResultsArray[4];
-            Console.WriteLine("Waveform X increment: {0:e}", fXincrement);
+            MessageBox.Show("Waveform X increment: " + fXincrement);
             double fXorigin = fResultsArray[5];
-            Console.WriteLine("Waveform X origin: {0:e}", fXorigin);
+            MessageBox.Show("Waveform X origin: " + fXorigin);
             double fXreference = fResultsArray[6];
-            Console.WriteLine("W" +
-                "aveform X reference: {0:e}", fXreference);
+            MessageBox.Show("Waveform X reference: " + fXreference);
             double fYincrement = fResultsArray[7];
-            Console.WriteLine("Waveform Y increment: {0:e}", fYincrement);
+            MessageBox.Show("Waveform Y increment: " + fYincrement);
             double fYorigin = fResultsArray[8];
-            Console.WriteLine("Waveform Y origin: {0:e}", fYorigin);
+            MessageBox.Show("Waveform Y origin: " + fYorigin);
             double fYreference = fResultsArray[9];
-            Console.WriteLine("Waveform Y reference: {0:e}", fYreference);
+            MessageBox.Show("Waveform Y reference: " + fYreference);
             // Read waveform data.
             ResultsArray = myScope.DoQueryIEEEBlock(":WAVeform:DATA?");
 
@@ -221,7 +218,6 @@ namespace THD_App
             MessageBox.Show(pontoGraf2.Length.ToString());
 
             nLength = ResultsArray.Length;
-            Console.WriteLine("Number of data values: {0}", nLength);
             // Set up output file:
             strPath = "c:\\scope\\data\\waveform_data.csv";
             if (File.Exists(strPath)) File.Delete(strPath);
@@ -237,15 +233,19 @@ namespace THD_App
             writer.Close();
             Console.WriteLine("Waveform format BYTE data written to {0}",
             strPath);
-            
+
+            // Set the waveform source.
+            myScope.DoCommand(":WAVeform:SOURce FFT");
+            MessageBox.Show("Waveform source: " + myScope.DoQueryString(":WAVeform:SOURce?"));
+            // Choose the format of the data returned (WORD, BYTE, ASCII):
+            myScope.DoCommand(":WAVeform:FORMat BYTE");
+            MessageBox.Show("Waveform format: " + myScope.DoQueryString(":WAVeform:FORMat?"));
+            ResultsArray = myScope.DoQueryIEEEBlock(":WAVeform:DATA?");
+            pontoGraf3 = ResultsArray;
+            MessageBox.Show(pontoGraf3.Length.ToString());
         }
 
-        private void genWave()
-        {
-            //myScope.DoCommand(":WGEN:FREQuency ");
-        }
-
-        private void btIniciar_Click(object sender, EventArgs e)
+        private void btInicializar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -255,18 +255,7 @@ namespace THD_App
                 myScope.SetTimeoutSeconds(10);
                 // Initialize - start from a known state.
                 Initialize();
-                // Capture data.
-                Capture();
-                // Analyze the captured waveform.
-                Analyze();
-                lbVrmsFund.Text = freqFund.ToString() + "kHz";
-                lbVrmsNHarm.Text = vRMSChan1.ToString() + "V";
-
-                for (int i = 0; i < pontoGraf2.Length; i++)
-                {
-                    chtGraf2.Series[0].Points.AddY(pontoGraf2[i]);
-                }
-                
+                btInicializar.Enabled = false;
             }
             catch (System.ApplicationException err)
             {
@@ -283,54 +272,118 @@ namespace THD_App
             }
             finally
             {
-                //MessageBox.Show("Conecte o Osciloscópio");
-                //myScope.Close();
+                //if (MessageBox.Show("Tentar reconectar?", "Osciloscópio Desconectado", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.No)
+                //{
+                //    myScope.Close();
+                //}
+                //else
+                  //  btInicializar.Enabled = true;
             }
-
         }
 
-            private void btParar_Click(object sender, EventArgs e)
-            {
-                chtGraf1.Series[0].Points.Clear();
-                chtGraf2.Series[0].Points.Clear();
-                chtGraf3.Series[0].Points.Clear();
-                timer1.Enabled = false;
-            }
+        private void btGerarEntrada_Click(object sender, EventArgs e)
+        {
+            genWave();
+            fftCapture();
+            fftMeasure();
+        }
 
-            private void btSair_Click(object sender, EventArgs e)
-            {
-                if (MessageBox.Show("Deseja mesmo fechar o aplicativo?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == (DialogResult.Yes))
+        private void btObterSaida_Click(object sender, EventArgs e)
+        {
+            // Capture data.
+            Capture();
+            // Analyze the captured waveform.
+            Analyze();
+            lbVrmsFund.Text = freqFund.ToString() + "kHz";
+            //lbVrmsNHarm.Text = vRMSChan1.ToString() + "V";
+
+            for (int i = 0; i < pontoGraf2.Length; i++)
                 {
-                    Close();
+                    chtGraf2.Series[0].Points.AddY(pontoGraf2[i]);
                 }
+            for (int i = 0; i < pontoGraf3.Length; i++)
+            {
+                chtGraf3.Series[0].Points.AddY(pontoGraf3[i]);
             }
+        }
 
-            private void btTHDr_Click(object sender, EventArgs e)
+        private void genWave()
+        {
+            myScope.DoCommand(":WGEN:FREQuency " + tbFreq.Text);
+            //myScope.DoCommand(":WGEN:FUNCtion:SINusoid");
+            myScope.DoCommand(":WGEN:FUNCtion SQUare");
+            myScope.DoCommand(":WGEN:VOLTage:OFFSet 0.0");
+            myScope.DoCommand(":WGEN:VOLTage 9.0");
+            myScope.DoCommand(":WGEN:OUTPut 1");
+            myScope.DoCommand(":AUToscale");
+            MessageBox.Show("Amplitude 9.0 \nOffSet 0.0 \nWave Form Sinusoid", "Generated Wave");
+            
+        }
+
+        private void fftCapture()
+        {
+            myScope.DoCommand(":FFT:SOURce1 CHANnel1");
+            myScope.DoCommand(":FFT:CENTer 20000");
+            myScope.DoCommand(":FFT:SPAN 50000");
+            myScope.DoCommand(":FFT:VTYPe VRMS");
+            myScope.DoCommand(":FFT:SCALe 0.5");
+            myScope.DoCommand(":FFT:OFFSet 1.9812");
+            myScope.DoCommand(":FFT:DISPlay 1");
+            myScope.DoCommand(":CHANnel1:DISPlay 0");
+        }
+
+        private void fftMeasure()
+        {
+            //myScope.DoCommand(":MEASure:ALL");
+            myScope.DoCommand(":MEASure:VMAX FFT");
+            lbVrmsNHarm.Text = myScope.DoQueryNumber(":MEASure:VMAX? FFT").ToString();
+        }
+
+        private void btTHDr_Click(object sender, EventArgs e)
             {
                 thd_r = new Random().NextDouble();
                 thd_r = thd_r * 100;
                 listView1.Items.Add(thd_r.ToString("#") + "%");
             }
 
-            private void timer1_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (chtGraf1.Series[0].Points.Count > 30)
             {
-                if (chtGraf1.Series[0].Points.Count > 30)
-                {
-                    chtGraf1.Series[0].Points.RemoveAt(0);
-                    chtGraf1.Update();
-                }
-                chtGraf1.Series[0].Points.AddXY(x++, new Random().NextDouble());
-
-                //chtGraf2.Series[0].Points.AddY(pontoGraf2);
-
-                if (chtGraf3.Series[0].Points.Count > 20)
-                {
-                    chtGraf3.Series[0].Points.RemoveAt(0);
-                    chtGraf3.Update();
-                }
-                chtGraf3.Series[0].Points.AddY(new Random().NextDouble());
+                chtGraf1.Series[0].Points.RemoveAt(0);
+                chtGraf1.Update();
             }
-     }
+            chtGraf1.Series[0].Points.AddXY(x++, new Random().NextDouble());
+
+            if (chtGraf3.Series[0].Points.Count > 20)
+            {
+                chtGraf3.Series[0].Points.RemoveAt(0);
+                chtGraf3.Update();
+            }
+            chtGraf3.Series[0].Points.AddY(new Random().NextDouble());
+        }
+
+        private void btLimparDados_Click(object sender, EventArgs e)
+        {
+            chtGraf1.Series[0].Points.Clear();
+            chtGraf2.Series[0].Points.Clear();
+            chtGraf3.Series[0].Points.Clear();
+            lbVrmsFund.Text = "";
+            lbVrmsNHarm.Text = "";
+            tbFreq.Text = "";
+            tbHarmN.Text = "";
+            btInicializar.Enabled = true;
+            timer1.Enabled = false;
+        }
+
+        private void btSair_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja mesmo fechar o aplicativo?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == (DialogResult.Yes))
+            {
+                Close();
+            }
+        }
+    }
 
     class VisaComInstrument
     {
