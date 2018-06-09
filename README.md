@@ -24,5 +24,10 @@ Por fim, tem-se a opção **Parar**, que reseta os dados e a opção **Sair** pa
 
 Nesta versão fazemos a inicialização, captura e análise de dados ao clicar em Capturar. Porém ainda não foi testado no osciloscópio, logo o objeto myScope não está sendo inicializado o que faz com que ocorra um erro e depois o fechamento do programa, que foi representado por uma caixa de mensagem escrito **Close**.
 
-## Próximo passo
-Testar este programa no osciloscópio.
+## Versão 2.0
+
+Nesta segunda versão, tem-se a possibilidade de gerar entrada senoidal ou quadrada, obter a FFT, obter os valores de potência dos harmônicos.
+
+## Interface da versão 2.0
+
+![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoParcial5.PNG)
