@@ -1,10 +1,10 @@
 # Software para calcular os valores de THD
 
 Motivação:
-Quando usa-se um amplificador, ele chega num estado de saturação, neste estado ele passa a ter sua amplitude constante e sua frequência variando. Então, seria muito bom ter o controle de quando o amplificador passa a variar a frequência e ter a relação de frequência, caso seja aceitável ter a frequência um pouco diferente até certo ponto. 
+Quando usa-se um amplificador, ele chega num estado de saturação, neste estado ele passa a ter sua amplitude constante e sua frequência variando. Na verdade, o que ocorre é que aparecem harmônicos do sinal que acabam produzindo uma distorção no próprio sinal. Então, para ter o controle de quando o amplificador passa a variar a frequência e ter a relação de distorção do sinal, pois a distorção será aceitável até certo nível, será criado este software.
 
 Função:
-O programa deve se conectar com o osciloscópio e pegar os dados dele para plotar gráficos, a partir desses gráficos e dos dados obtidos calcular a frequência do harmônico e então fornecer a relação entre a frequência obtida e a desejada.
+O programa deve se conectar com o osciloscópio da Keysight e se comunicar com ele para obter dados para plotar gráficos no domínio do tempo e da frequência com o uso da FFT. Além disso, será obtido os valores de tensão RMS de cada harmônico para se calcular o valor de distorção (THD) que depende diretamente deles.
 
 Tutorial:
 O tutorial que eu fiz encontra-se neste [link](https://www.youtube.com/watch?v=2pL2GOASWww&t=9s)
