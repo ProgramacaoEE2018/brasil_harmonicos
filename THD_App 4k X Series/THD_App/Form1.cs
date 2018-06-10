@@ -126,6 +126,7 @@ namespace THD_App
                 Initialize();
                 btInicializar.Enabled = false;
                 btGerarEntrada.Enabled = true;
+                btObterSaida.Enabled = true;
             }
             catch (System.ApplicationException err)
             {
