@@ -31,3 +31,17 @@ Nesta segunda versão, tem-se a possibilidade de gerar entrada senoidal ou quadr
 ## Interface da versão 2.0
 
 ![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoParcial5.PNG)
+
+## Versão 2.4
+
+Finalmente, nesta versão, foi alcançado o objetivo do projeto, que é o de calcular o valor de distorção total dos harmônicos. 
+
+A partir das duas imagens a seguir, percebe-se que foi obtido uma onda quadrada e uma onda triangular como sinal de saída. Foi então calculado para elas os valores de THD, pois já conhecíamos os valores teóricos delas duas: 
+
+THDf(Quadrada) = 48,3%
+
+![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal5.PNG)
+
+THDf(Triangular) = 12.1%
+
+![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal6.PNG)
