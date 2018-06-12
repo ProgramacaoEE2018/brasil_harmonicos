@@ -48,7 +48,7 @@ THDf(Triangular) = 12.1%https://www.microsoft.com/pt-br/download/details.aspx?id
 
 ## Instruções de Compilação
 
-Para compilar o programa foi necessário a atualização da versão do .NET Framework para a versão 4.5.1 neste [LINK](https://www.microsoft.com/pt-br/download/details.aspx?id=30653).
+Para compilar o programa foi necessário a atualização da versão do .NET Framework para a versão 4.5.1, que pode ser encontrada neste [LINK](https://www.microsoft.com/pt-br/download/details.aspx?id=30653).
 
-O .NET Framework deve ser atualizado para aceitar algumas funções utilizadas no Windows Forms e aceitar a atualização da referência VISA COM Library para a VISA COM 5.9 Type Library que será atualizada com a instalação da IO Libraries Suite que pode ser baixa neste [LINK](https://www.microsoft.com/pt-br/download/details.aspx?id=30653).
-Após a instalação dessa biblioteca, o programa estará pronto para funcionar!
+O .NET Framework deve ser atualizado para aceitar algumas funções utilizadas no Windows Forms e aceitar a atualização da referência VISA COM Library para a VISA COM 5.9 Type Library que será atualizada com a instalação da IO Libraries Suite que pode ser baixado neste [LINK](https://www.microsoft.com/pt-br/download/details.aspx?id=30653).
+Após a instalação dessa do .NET Framework e do IO Lbraries Suite, o programa estará pronto para funcionar!
