@@ -43,11 +43,11 @@ A partir das duas imagens a seguir, percebe-se que foi obtido uma onda quadrada 
 
 THDf(Quadrada) = 48,3%
 
-![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal5.PNG)
+![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal5.1.PNG)
 
-THDf(Triangular) = 12.1%https://www.microsoft.com/pt-br/download/details.aspx?id=30653
+THDf(Triangular) = 12.1%
 
-![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal6.PNG)
+![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal6.1.PNG)
 
 ## Instruções de Compilação
 
