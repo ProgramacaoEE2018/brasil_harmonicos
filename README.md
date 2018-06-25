@@ -19,21 +19,13 @@ Esboço do Projeto:
 
 ![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/Esboco.PNG)
 
-De acordo com o novo [Fluxograma](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/THD%20-%20Fluxograma%20do%20Software.pdf), primeiro a conexão do osciloscópio deve ser bem sucedida, após isso informamos o valor da frequência fundamental e até qual harmônico deve ser considerado no cálculo do THDr, então, ao clicar em **Capturar** iniciamos obtenção dos dados e a plotar os gráficos de sinal de entrada no tempo, saída na frequência e saída no tempo. Assim, podemos visualizar a contribuição dos harmônicos na saída.
+De acordo com o Fluxograma, primeiro a conexão do osciloscópio deve ser bem sucedida, após isso informamos o valor da frequência fundamental e até qual harmônico deve ser considerado no cálculo do THDr, então, ao clicar em **Capturar** iniciamos obtenção dos dados e a plotar os gráficos de sinal de entrada no tempo, saída na frequência e saída no tempo. Assim, podemos visualizar a contribuição dos harmônicos na saída.
 Após isso, temos a opção **Obter THDr**, que fornecerá o valor em porcentagem da distorção do sinal. Concluindo o objetivo.
 Por fim, tem-se a opção **Parar**, que reseta os dados e a opção **Sair** para fechar o programa.
 
 ## Versão Inicial do Aplicativo
 
 Nesta versão fazemos a inicialização, captura e análise de dados ao clicar em Capturar. Porém ainda não foi testado no osciloscópio, logo o objeto myScope não está sendo inicializado o que faz com que ocorra um erro e depois o fechamento do programa, que foi representado por uma caixa de mensagem escrito **Close**.
-
-## Versão 2.0
-
-Nesta segunda versão, tem-se a possibilidade de gerar entrada senoidal ou quadrada, obter a FFT, obter os valores de potência dos harmônicos.
-
-## Interface da versão 2.0
-
-![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoParcial5.PNG)
 
 ## Versão 2.4
 
