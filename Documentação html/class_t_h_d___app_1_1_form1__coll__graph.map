@@ -1,0 +1,3 @@
+<map id="THD_App.Form1" name="THD_App.Form1">
+<area shape="rect" id="node4" href="$class_t_h_d___app_1_1_visa_com_instrument.html" title="{THD_App.VisaComInstrument\n|&#45; m_ResourceManager\l&#45; m_IoObject\l&#45; m_strVisaAddress\l|+ VisaComInstrument()\l+ DoCommand()\l+ DoCommandIEEEBlock()\l+ DoQueryString()\l+ DoQueryNumber()\l+ DoQueryNumbers()\l+ DoQueryIEEEBlock()\l+ SetTimeoutSeconds()\l+ Close()\l&#45; CheckInstrumentErrors()\l&#45; OpenIo()\l}" alt="" coords="173,5,367,259"/>
+</map>
