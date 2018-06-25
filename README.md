@@ -43,9 +43,15 @@ THDf(Triangular) = 12.1%
 
 ![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal6.1.PNG)
 
+## Documentação do projeto e do código via Doxygen
+[Documentação](file:///C:/Users/brasi/Documents/Acad%C3%AAmico/Telecom/Programa%C3%A7%C3%A3o/THD%20Calculator/Git/Documenta%C3%A7%C3%A3o%20html/class_t_h_d___app_1_1_form1.html)
+
 ## Instruções de Compilação
 
 Para compilar o programa foi necessário a atualização da versão do .NET Framework para a versão 4.5.1, que pode ser encontrada neste [LINK](https://www.microsoft.com/pt-br/download/details.aspx?id=30653).
 
 O .NET Framework deve ser atualizado para aceitar algumas funções utilizadas no Windows Forms e aceitar a atualização da referência VISA COM Library para a VISA COM 5.9 Type Library que será atualizada com a instalação da IO Libraries Suite que pode ser baixado neste [LINK](http://www.keysight.com/find/iolib).
 Após a Atualização do .NET Framework e do IO Lbraries Suite, o programa estará pronto para funcionar!
+
+## Código funcional
+[Link] do código funcional.
