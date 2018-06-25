@@ -20,7 +20,8 @@ Neste tutorial foi criado um jogo da velha com a seguinte interface:
 
 ## Diagrama de Classes
 ![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/Diagrama%20de%20classes%20e%20relacionamentos.png)
-Esboço do Projeto:
+
+## Esboço da GUI
 
 ![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/Esboco.PNG)
 
