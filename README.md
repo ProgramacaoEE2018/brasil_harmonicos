@@ -43,9 +43,6 @@ THDf(Triangular) = 12.1%
 
 ![](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/Imagens/ResultadoFinal6.1.PNG)
 
-## Documentação do projeto e do código via Doxygen
-[Documentação](file:///C:/Users/brasi/Documents/Acad%C3%AAmico/Telecom/Programa%C3%A7%C3%A3o/THD%20Calculator/Git/Documenta%C3%A7%C3%A3o%20html/class_t_h_d___app_1_1_form1.html)
-
 ## Instruções de Compilação
 
 Para compilar o programa foi necessário a atualização da versão do .NET Framework para a versão 4.5.1, que pode ser encontrada neste [LINK](https://www.microsoft.com/pt-br/download/details.aspx?id=30653).
@@ -54,4 +51,4 @@ O .NET Framework deve ser atualizado para aceitar algumas funções utilizadas n
 Após a Atualização do .NET Framework e do IO Lbraries Suite, o programa estará pronto para funcionar!
 
 ## Código funcional
-[Link] do código funcional.
+[LINK](https://github.com/ProgramacaoEE2018/brasil_harmonicos/blob/master/THD_App%204k%20X%20Series/THD_App/Form1.cs) do código funcional.
