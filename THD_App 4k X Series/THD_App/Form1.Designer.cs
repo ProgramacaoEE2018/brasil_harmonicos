@@ -41,11 +41,6 @@
             this.gbFinalizar = new System.Windows.Forms.GroupBox();
             this.btLimparDados = new System.Windows.Forms.Button();
             this.btSair = new System.Windows.Forms.Button();
-            this.gbSaida = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lbVrmsFFund = new System.Windows.Forms.Label();
-            this.lbVrmsNHarm = new System.Windows.Forms.Label();
             this.gbEntrada = new System.Windows.Forms.GroupBox();
             this.numFFund = new System.Windows.Forms.NumericUpDown();
             this.numNHarm = new System.Windows.Forms.NumericUpDown();
@@ -58,9 +53,9 @@
             this.lbNumHarm = new System.Windows.Forms.Label();
             this.btObterSaida = new System.Windows.Forms.Button();
             this.pnChart = new System.Windows.Forms.Panel();
+            this.chtGraf1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chtGraf3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.chtGraf2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chtGraf1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnList = new System.Windows.Forms.Panel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.lbTabela = new System.Windows.Forms.Label();
@@ -69,14 +64,13 @@
             this.lbVrmsHarm = new System.Windows.Forms.Label();
             this.pnBut.SuspendLayout();
             this.gbFinalizar.SuspendLayout();
-            this.gbSaida.SuspendLayout();
             this.gbEntrada.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFFund)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNHarm)).BeginInit();
             this.pnChart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chtGraf1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chtGraf1)).BeginInit();
             this.pnList.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -84,7 +78,6 @@
             // pnBut
             // 
             this.pnBut.Controls.Add(this.gbFinalizar);
-            this.pnBut.Controls.Add(this.gbSaida);
             this.pnBut.Controls.Add(this.gbEntrada);
             this.pnBut.Location = new System.Drawing.Point(12, 12);
             this.pnBut.Name = "pnBut";
@@ -121,55 +114,6 @@
             this.btSair.Text = "Sair";
             this.btSair.UseVisualStyleBackColor = true;
             this.btSair.Click += new System.EventHandler(this.btSair_Click);
-            // 
-            // gbSaida
-            // 
-            this.gbSaida.Controls.Add(this.label2);
-            this.gbSaida.Controls.Add(this.label1);
-            this.gbSaida.Controls.Add(this.lbVrmsFFund);
-            this.gbSaida.Controls.Add(this.lbVrmsNHarm);
-            this.gbSaida.Location = new System.Drawing.Point(3, 293);
-            this.gbSaida.Name = "gbSaida";
-            this.gbSaida.Size = new System.Drawing.Size(222, 151);
-            this.gbSaida.TabIndex = 11;
-            this.gbSaida.TabStop = false;
-            this.gbSaida.Text = "Saida";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(32, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(140, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Vrms do N-ésimo Harmônico";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(165, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Vrms da Frequência Fundamental";
-            // 
-            // lbVrmsFFund
-            // 
-            this.lbVrmsFFund.AutoSize = true;
-            this.lbVrmsFFund.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVrmsFFund.Location = new System.Drawing.Point(29, 40);
-            this.lbVrmsFFund.Name = "lbVrmsFFund";
-            this.lbVrmsFFund.Size = new System.Drawing.Size(0, 13);
-            this.lbVrmsFFund.TabIndex = 8;
-            // 
-            // lbVrmsNHarm
-            // 
-            this.lbVrmsNHarm.AutoSize = true;
-            this.lbVrmsNHarm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVrmsNHarm.Location = new System.Drawing.Point(29, 104);
-            this.lbVrmsNHarm.Name = "lbVrmsNHarm";
-            this.lbVrmsNHarm.Size = new System.Drawing.Size(0, 13);
-            this.lbVrmsNHarm.TabIndex = 9;
             // 
             // gbEntrada
             // 
@@ -311,71 +255,71 @@
             // 
             // pnChart
             // 
+            this.pnChart.Controls.Add(this.chtGraf1);
             this.pnChart.Controls.Add(this.chtGraf3);
             this.pnChart.Controls.Add(this.chtGraf2);
-            this.pnChart.Controls.Add(this.chtGraf1);
             this.pnChart.Location = new System.Drawing.Point(254, 12);
             this.pnChart.Name = "pnChart";
             this.pnChart.Size = new System.Drawing.Size(405, 572);
             this.pnChart.TabIndex = 1;
             // 
-            // chtGraf3
+            // chtGraf1
             // 
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
-            chartArea1.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
             chartArea1.Name = "ChartArea1";
-            this.chtGraf3.ChartAreas.Add(chartArea1);
-            this.chtGraf3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chtGraf1.ChartAreas.Add(chartArea1);
+            this.chtGraf1.Dock = System.Windows.Forms.DockStyle.Top;
             legend1.Name = "Legend1";
-            this.chtGraf3.Legends.Add(legend1);
-            this.chtGraf3.Location = new System.Drawing.Point(0, 382);
-            this.chtGraf3.Name = "chtGraf3";
+            this.chtGraf1.Legends.Add(legend1);
+            this.chtGraf1.Location = new System.Drawing.Point(0, 382);
+            this.chtGraf1.Name = "chtGraf1";
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
             series1.Name = "Series1";
-            series1.YValuesPerPoint = 2;
-            this.chtGraf3.Series.Add(series1);
+            this.chtGraf1.Series.Add(series1);
+            this.chtGraf1.Size = new System.Drawing.Size(405, 191);
+            this.chtGraf1.TabIndex = 3;
+            this.chtGraf1.Text = "chart1";
+            // 
+            // chtGraf3
+            // 
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea2.AxisY2.Enabled = System.Windows.Forms.DataVisualization.Charting.AxisEnabled.False;
+            chartArea2.Name = "ChartArea1";
+            this.chtGraf3.ChartAreas.Add(chartArea2);
+            this.chtGraf3.Dock = System.Windows.Forms.DockStyle.Top;
+            legend2.Name = "Legend1";
+            this.chtGraf3.Legends.Add(legend2);
+            this.chtGraf3.Location = new System.Drawing.Point(0, 191);
+            this.chtGraf3.Name = "chtGraf3";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.SplineArea;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 2;
+            this.chtGraf3.Series.Add(series2);
             this.chtGraf3.Size = new System.Drawing.Size(405, 191);
             this.chtGraf3.TabIndex = 2;
             this.chtGraf3.Text = "chart1";
             // 
             // chtGraf2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chtGraf2.ChartAreas.Add(chartArea2);
-            this.chtGraf2.Dock = System.Windows.Forms.DockStyle.Top;
-            legend2.Name = "Legend1";
-            this.chtGraf2.Legends.Add(legend2);
-            this.chtGraf2.Location = new System.Drawing.Point(0, 191);
-            this.chtGraf2.Name = "chtGraf2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chtGraf2.Series.Add(series2);
-            this.chtGraf2.Size = new System.Drawing.Size(405, 191);
-            this.chtGraf2.TabIndex = 1;
-            this.chtGraf2.Text = "chart2";
-            // 
-            // chtGraf1
-            // 
             chartArea3.Name = "ChartArea1";
-            this.chtGraf1.ChartAreas.Add(chartArea3);
-            this.chtGraf1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.chtGraf2.ChartAreas.Add(chartArea3);
+            this.chtGraf2.Dock = System.Windows.Forms.DockStyle.Top;
             legend3.Name = "Legend1";
-            this.chtGraf1.Legends.Add(legend3);
-            this.chtGraf1.Location = new System.Drawing.Point(0, 0);
-            this.chtGraf1.Name = "chtGraf1";
+            this.chtGraf2.Legends.Add(legend3);
+            this.chtGraf2.Location = new System.Drawing.Point(0, 0);
+            this.chtGraf2.Name = "chtGraf2";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Legend = "Legend1";
             series3.Name = "Series1";
-            this.chtGraf1.Series.Add(series3);
-            this.chtGraf1.Size = new System.Drawing.Size(405, 191);
-            this.chtGraf1.TabIndex = 0;
-            this.chtGraf1.Text = "chart1";
+            this.chtGraf2.Series.Add(series3);
+            this.chtGraf2.Size = new System.Drawing.Size(405, 191);
+            this.chtGraf2.TabIndex = 1;
+            this.chtGraf2.Text = "chart2";
             // 
             // pnList
             // 
@@ -449,16 +393,14 @@
             this.Text = "Total Harmonic Distortion Calculator";
             this.pnBut.ResumeLayout(false);
             this.gbFinalizar.ResumeLayout(false);
-            this.gbSaida.ResumeLayout(false);
-            this.gbSaida.PerformLayout();
             this.gbEntrada.ResumeLayout(false);
             this.gbEntrada.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numFFund)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numNHarm)).EndInit();
             this.pnChart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chtGraf1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chtGraf2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chtGraf1)).EndInit();
             this.pnList.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -473,7 +415,6 @@
         private System.Windows.Forms.Button btObterSaida;
         private System.Windows.Forms.Panel pnChart;
         private System.Windows.Forms.DataVisualization.Charting.Chart chtGraf2;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chtGraf1;
         private System.Windows.Forms.Panel pnList;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label lbTabela;
@@ -482,13 +423,8 @@
         private System.Windows.Forms.Label lbFreqFund;
         private System.Windows.Forms.Button btTHDr;
         private System.Windows.Forms.Button btLimparDados;
-        private System.Windows.Forms.Label lbVrmsNHarm;
-        private System.Windows.Forms.Label lbVrmsFFund;
         private System.Windows.Forms.GroupBox gbFinalizar;
-        private System.Windows.Forms.GroupBox gbSaida;
         private System.Windows.Forms.GroupBox gbEntrada;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btGerarEntrada;
         private System.Windows.Forms.Button btInicializar;
         private System.Windows.Forms.RadioButton rbSquare;
@@ -498,6 +434,7 @@
         private System.Windows.Forms.Label lbVrmsHarm;
         private System.Windows.Forms.NumericUpDown numNHarm;
         private System.Windows.Forms.NumericUpDown numFFund;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chtGraf1;
     }
 }
 

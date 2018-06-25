@@ -214,11 +214,6 @@ namespace THD_App
         {
             double[] vetorVrms = new double[Decimal.ToInt32(numNHarm.Value)];
 
-            //myScope.DoCommand(":MEASure:VMAX MATH1");
-            //MessageBox.Show("VRMSfund = " + myScope.DoQueryNumber(":MEASure:VMAX? MATH1").ToString(), "Medidas da FFT");
-            //lbVrmsFFund.Text = myScope.DoQueryNumber(":MEASure:VMAX? MATH1").ToString() + "V";
-
-
             myScope.DoCommand(":MARKer:MODE WAVeform");
             myScope.DoCommand(":MARKer:X1Y1source MATH1");
             for (int n = 1; n <= numNHarm.Value; n++)
@@ -323,8 +318,6 @@ namespace THD_App
             chtGraf1.Series[0].Points.Clear();
             chtGraf2.Series[0].Points.Clear();
             chtGraf3.Series[0].Points.Clear();
-            lbVrmsFFund.Text = "";
-            lbVrmsNHarm.Text = "";
             numFFund.Value = 2500;
             numNHarm.Value = 8;
             btInicializar.Enabled = true;
